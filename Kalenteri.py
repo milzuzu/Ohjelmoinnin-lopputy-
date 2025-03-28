@@ -29,13 +29,12 @@ def tarkastelu(vuosi, kuukausi, tapahtumat):
     # Tulostetaan muokattu kuukausikalenteri
     print("\n".join(tulostettava))
 
-    def main():
+def main():
 
-        if __name__ == "__main__":
+    if __name__ == "__main__":
+        vuosi = input("Valitse vuosi: ")
+        kuukausi = input("Valitse kuukausi: ")
 
-            vuosi = input("Valitse vuosi: ")
-            kuukausi = input("Valitse kuukausi: ")
-
-            tarkastelu(vuosi, kuukausi, tapahtumat)
+        tarkastelu(vuosi, kuukausi, tapahtumat)
             
         main()

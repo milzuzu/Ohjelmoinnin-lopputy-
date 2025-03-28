@@ -31,9 +31,11 @@ def tarkastelu(vuosi, kuukausi, tapahtumat):
 
     def main():
 
-        vuosi = input("Valitse vuosi: ")
-        kuukausi = input("Valitse kuukausi: ")
+        if __name__ == "__main__":
 
-        tarkastelu(vuosi, kuukausi, tapahtumat)
+            vuosi = input("Valitse vuosi: ")
+            kuukausi = input("Valitse kuukausi: ")
 
-    main()
+            tarkastelu(vuosi, kuukausi, tapahtumat)
+            
+        main()

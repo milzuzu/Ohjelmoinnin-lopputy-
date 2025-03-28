@@ -1,40 +1,39 @@
-
-
-# Ohjelman käynnistys
-def start():
-    print("Tervetuloa kalenteriin!\n")
-    print("Lisää muistutus, muokkaa & poista muistutus tai tarkastele kalenteria")
-
 import calendar
-# Ellun tekele
+from tabulate import tabulate
+
+
 # Tulostaa kuukausikalenterin ja merkitsee tapahtumapäivät tähdellä (*)
 def tarkastelu(vuosi, kuukausi, tapahtumat):
 
     # Luodaan kalenteri, jossa viikko alkaa maanantaista
-    kalenteri = calendar.TextCalendar(calendar.MONDAY)
-    kuukauden_paivat = kalenteri.formatmonth(vuosi, kuukausi).split("\n")
+    kalenteri = calendar.TextCalendar(firstweekday=calendar.MONDAY)
+    kuukauden_paivat = kalenteri.monthdayscalendar(vuosi, kuukausi)
 
-    numerot = "1234567890"
-    tulostettava = [] # Lista muokatuille riveille
-
-    for rivi in kuukauden_paivat:
-        uusi_rivi = "" # Muokattava rivi
-        for sana in rivi.split(): # Käydään läpi rivin sanat
-            if sana in numerot and int(sana) in tapahtumat: # Katsotaan onko päivälle tapahtuma
-                uusi_rivi += f"{sana}*" # Lisätään tähti (*) tapahtumapäivään
-            else:
-                uusi_rivi += f"{sana}" # Lisätään normaalipäivä ilman tapahtumaa
-        tulostettava.append(uusi_rivi.rstrip()) # Lisätään muokattu rivi listaan ilman ylimääräisiä välilyöntejä
-   
-    # Tulostetaan muokattu kuukausikalenteri
-    print("\n".join(tulostettava))
+    # Muokataan kalenterin päivät ja lisätään tähdet tapahtumapäiville
+    muokattu_kuukausi = []
+    for viikko in kuukauden_paivat:
+        muokattu_viikko = []
+        for paiva in viikko:
+            if paiva == 0:  # Tyhjät päivät
+                muokattu_viikko.append("")
+            elif paiva in tapahtumat:  # Tapahtumapäivät
+                muokattu_viikko.append(f"{paiva}*")
+            else:  # Tavalliset päivät
+                muokattu_viikko.append(str(paiva))
+        muokattu_kuukausi.append(muokattu_viikko)
+    
+    # Tulostetaan kalenteri taulukkomuodossa
+    otsikot = ["Ma", "Ti", "Ke", "To", "Pe", "La", "Su"]
+    print(f"\n{calendar.month_name[kuukausi]} {vuosi}".center(30))
+    print(tabulate(muokattu_kuukausi, headers=otsikot, tablefmt="grid"))
 
 def main():
+    
+    vuosi = int(input("Valitse vuosi: "))
+    kuukausi = int(input("Valitse kuukausi: "))
+    tapahtumat = [5, 10, 17]
 
-    if __name__ == "__main__":
-        vuosi = input("Valitse vuosi: ")
-        kuukausi = input("Valitse kuukausi: ")
+    tarkastelu(vuosi, kuukausi, tapahtumat)
 
-        tarkastelu(vuosi, kuukausi, tapahtumat)
-            
-        main()
+if __name__ == "__main__":  
+    main()

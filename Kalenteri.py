@@ -16,7 +16,7 @@ def valikko():
         print("3. Poista tapahtuma")
         print("4. Muokkaa tapahtumaa")
         print("5. Lopeta ohjelma")
-        valinta = input("Valitse toiminto (1-5):") # Käyttäjä valitsee numeron, joka vastaa toimintoa
+        valinta = int(input("Valitse toiminto (1-5): ")) # Käyttäjä valitsee numeron, joka vastaa toimintoa
 
         if valinta == 1:
             vuosi = int(input("Anna vuosi: "))

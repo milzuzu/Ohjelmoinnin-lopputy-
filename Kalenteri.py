@@ -2,9 +2,11 @@ import calendar
 from tabulate import tabulate
 import colorama
 
+# Määritellään oikea tiedoston nimi
+TIEDOSTO = "kalenteri.txt"
+
 # Valikko, käyttäjä voi valita haluamansa toiminnon
 def valikko():
-    filename = "kalenteri.txt" # Määritellään oikea tiedoston nimi
     # Looppi, jotta ohjelma pyörii, kunnes käyttäjä valitsee lopettaa ///KESKEN!
     while True:
         # Printit
@@ -21,17 +23,17 @@ def valikko():
             vuosi = int(input("Anna vuosi: "))
             kuukausi = int(input("Anna kuukausi: "))
             tapahtumat = [1, 10, 20] # Paikanpitäjä tapahtumat // Tähän koodi, joka avaa tekstitiedoston, jossa tallennetut tapahtumat
-            tarkastelu(vuosi, kuukausi, tapahtumat, filename)
+            tarkastelu(vuosi, kuukausi, tapahtumat)
         elif valinta == 2:
-            tapahtuman_lisäys(vuosi, kuukausi, tapahtumat, filename)
+            tapahtuman_lisäys(vuosi, kuukausi, tapahtumat)
         elif valinta == 3:
-            poista_tapahtuma(vuosi, kuukausi, tapahtumat, filename)
+            poista_tapahtuma(vuosi, kuukausi, tapahtumat)
         else:
             print("Valitse numero (1-5)")
 
 
 # Tulostaa kuukausikalenterin ja merkitsee tapahtumapäivät tähdellä (*)
-def tarkastelu(vuosi, kuukausi, tapahtumat, filename):
+def tarkastelu(vuosi, kuukausi, tapahtumat):
 
     # Luodaan kalenteri, jossa viikko alkaa maanantaista
     kalenteri = calendar.TextCalendar(firstweekday=calendar.MONDAY)
@@ -56,7 +58,7 @@ def tarkastelu(vuosi, kuukausi, tapahtumat, filename):
     print(tabulate(muokattu_kuukausi, headers=otsikot, tablefmt="grid"))
 
 # Lisää tapahtuman tiedostoon kalenteri.txt
-def tapahtuman_lisäys(vuosi, kuukausi, tapahtumat, filename):
+def tapahtuman_lisäys(vuosi, kuukausi, tapahtumat):
     filename = "kalenteri.txt"
     try:
         with open(filename, "a") as file: # Avataan tiedosto muokkaus modessa
@@ -72,7 +74,7 @@ def tapahtuman_lisäys(vuosi, kuukausi, tapahtumat, filename):
         print(f"Virhe tiedostoon kirjoittamisessa: {e}") # Virheilmoitus muille tiedostovirheille
 
 # Käyttäjä syöttää halutun tapahtuman ja se poistetaan ///KESKEN!
-def poista_tapahtuma(vuosi, kuukausi, tapahtumat, filename):
+def poista_tapahtuma(vuosi, kuukausi, tapahtumat):
 
     try:
         with open(filename, "a") as file:

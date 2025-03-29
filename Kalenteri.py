@@ -32,7 +32,7 @@ def valikko():
             print("Valitse numero (1-5)")
 
 
-# Tulostaa kuukausikalenterin ja merkitsee tapahtumapäivät tähdellä (*)
+# Tulostaa kuukausikalenterin ja merkitsee tapahtumapäivät tähdellä (*) //Ehkä toimii about oikein
 def tarkastelu(vuosi, kuukausi, tapahtumat):
 
     # Luodaan kalenteri, jossa viikko alkaa maanantaista

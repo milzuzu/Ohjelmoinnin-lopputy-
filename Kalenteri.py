@@ -5,7 +5,7 @@ import colorama
 # Määritellään oikea tiedoston nimi
 TIEDOSTO = "kalenteri.txt"
 
-# Valikko, käyttäjä voi valita haluamansa toiminnon
+# Valikko, käyttäjä voi valita haluamansa toiminnon //Ei valmis //Tarvii Try With
 def valikko():
     # Looppi, jotta ohjelma pyörii, kunnes käyttäjä valitsee lopettaa ///KESKEN!
     while True:
@@ -20,7 +20,7 @@ def valikko():
         print("5. Lopeta ohjelma")
         valinta = int(input("Valitse toiminto (1-5): ")) # Käyttäjä valitsee numeron, joka vastaa toimintoa
         if valinta == 1:
-            vuosi = int(input("Anna vuosi: ")) # TÄHÄN TRY WITH
+            vuosi = int(input("Anna vuosi: ")) # //TÄHÄN TRY WITH
             kuukausi = int(input("Anna kuukausi: "))
             tapahtumat = [1, 10, 20] # Paikanpitäjä tapahtumat // Tähän koodi, joka avaa tekstitiedoston, jossa tallennetut tapahtumat
             tarkastelu(vuosi, kuukausi, tapahtumat)
@@ -57,7 +57,7 @@ def tarkastelu(vuosi, kuukausi, tapahtumat):
     print(f"\n{calendar.month_name[kuukausi]} {vuosi}".center(30))
     print(tabulate(muokattu_kuukausi, headers=otsikot, tablefmt="grid"))
 
-# Lisää tapahtuman tiedostoon kalenteri.txt
+# Lisää tapahtuman tiedostoon kalenteri.txt //Tarvii tietojenkäsittely parannuksen
 def tapahtuman_lisäys(vuosi, kuukausi, tapahtumat):
     try:
         with open(TIEDOSTO, "a") as file: # Avataan tiedosto muokkaus modessa
@@ -72,7 +72,7 @@ def tapahtuman_lisäys(vuosi, kuukausi, tapahtumat):
     except OSError as e:
         print(f"Virhe tiedostoon kirjoittamisessa: {e}") # Virheilmoitus muille tiedostovirheille
 
-# Käyttäjä syöttää halutun tapahtuman ja se poistetaan ///KESKEN!
+# Käyttäjä syöttää halutun tapahtuman ja se poistetaan ///KESKEN! //Ei toimi kunnolla
 def poista_tapahtuma(vuosi, kuukausi, tapahtumat):
 
     try:

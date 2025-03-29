@@ -25,6 +25,7 @@ def valikko():
             tapahtuman_lisäys(vuosi, kuukausi, tapahtumat)
         else:
             print("Valitse numero (1-5)")
+            
         
 
 
@@ -76,8 +77,10 @@ def tapahtuman_lisäys(vuosi, kuukausi, paiva):
 
 
 def main():
+
+    filename = "kalenteri.txt"
     
     valikko()
 
-
-    main()
+    if __name__ == "__name__":
+        main()

@@ -1,5 +1,6 @@
 import calendar
 from tabulate import tabulate
+import colorama
 
 # Valikko, käyttäjä voi valita haluamansa toiminnon
 def valikko():
@@ -8,6 +9,7 @@ def valikko():
     while True:
         # Printit
         print("Tervetuloa käyttämään kalenteria! ")
+        print("-" * 33)
         print("\nValitse toiminto:")
         print("1. Tarkastele kalenteria")
         print("2. Lisää tapahtuma")
@@ -60,10 +62,8 @@ def tapahtuman_lisäys(vuosi, kuukausi, paiva):
     filename = "kalenteri.txt"
     try:
         with open(filename, "a") as file: # Avataan tiedosto muokkaus modessa
-            print("-" * 20) # Printataan raamia
             print("Tapahtuman lisäys -- esim. 2025 3 07")
             tietue = input("\nKerro vuosi, kuukausi ja päivä: ")
-            print("-" * 20) # Printataan raamia
             file.write(tietue + "\n") # Kirjoitetaan tiedostoon haluttu tietue + rivinvaihto
             print("\nTapahtuma tallennettu onnistuneesti. ")
     except FileNotFoundError:

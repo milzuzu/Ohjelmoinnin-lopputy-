@@ -1,0 +1,1 @@
+Ohjelmoinninperusteet lopputyö, kalenteri komentorivillä.

@@ -7,7 +7,9 @@ def valikko():
     # Looppi, jotta ohjelma pyörii, kunnes käyttäjä valitsee lopettaa ///KESKEN!
     while True:
         # Printit
+        print("-" * 40)
         print("Tervetuloa käyttämään kalenteria! ")
+        print("-" * 40)
         print("\nValitse toiminto:")
         print("1. Tarkastele kalenteria")
         print("2. Lisää tapahtuma")
@@ -79,8 +81,7 @@ def tapahtuman_lisäys(vuosi, kuukausi, paiva):
 def main():
 
     filename = "kalenteri.txt"
-    
     valikko()
 
-    if __name__ == "__name__":
-        main()
+if __name__ == "__main__":
+    main()

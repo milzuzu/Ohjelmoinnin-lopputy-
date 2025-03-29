@@ -21,18 +21,17 @@ def valikko():
             vuosi = int(input("Anna vuosi: "))
             kuukausi = int(input("Anna kuukausi: "))
             tapahtumat = [1, 10, 20] # Paikanpitäjä tapahtumat // Tähän koodi, joka avaa tekstitiedoston, jossa tallennetut tapahtumat
-            tarkastelu(vuosi, kuukausi, tapahtumat)
+            tarkastelu(vuosi, kuukausi, tapahtumat, filename)
         elif valinta == 2:
-            tapahtuman_lisäys(vuosi, kuukausi, tapahtumat)
+            tapahtuman_lisäys(vuosi, kuukausi, tapahtumat, filename)
+        elif valinta == 3:
+            poista_tapahtuma(vuosi, kuukausi, tapahtumat, filename)
         else:
             print("Valitse numero (1-5)")
-            
-        
-
 
 
 # Tulostaa kuukausikalenterin ja merkitsee tapahtumapäivät tähdellä (*)
-def tarkastelu(vuosi, kuukausi, tapahtumat):
+def tarkastelu(vuosi, kuukausi, tapahtumat, filename):
 
     # Luodaan kalenteri, jossa viikko alkaa maanantaista
     kalenteri = calendar.TextCalendar(firstweekday=calendar.MONDAY)
@@ -57,7 +56,7 @@ def tarkastelu(vuosi, kuukausi, tapahtumat):
     print(tabulate(muokattu_kuukausi, headers=otsikot, tablefmt="grid"))
 
 # Lisää tapahtuman tiedostoon kalenteri.txt
-def tapahtuman_lisäys(vuosi, kuukausi, paiva):
+def tapahtuman_lisäys(vuosi, kuukausi, tapahtumat, filename):
     filename = "kalenteri.txt"
     try:
         with open(filename, "a") as file: # Avataan tiedosto muokkaus modessa
@@ -72,12 +71,30 @@ def tapahtuman_lisäys(vuosi, kuukausi, paiva):
     except OSError as e:
         print(f"Virhe tiedostoon kirjoittamisessa: {e}") # Virheilmoitus muille tiedostovirheille
 
+# Käyttäjä syöttää halutun tapahtuman ja se poistetaan ///KESKEN!
+def poista_tapahtuma(vuosi, kuukausi, tapahtumat, filename):
+
+    try:
+        with open(filename, "a") as file:
+            for event in file:
+                if event == tapahtumat:
+                    event = ""
+                else:
+                    print("Päivälle ei ole tapahtumaa.")
+    except FileNotFoundError:
+        print("Tapahtumien haussa kävi virhe") # Error printti, jos tiedostoa ei löydy
+    except Exception as e:
+        print(f"Odottamaton virhe: {e}") # Error printti muihin virheisiin
+    except OSError as e:
+        print(f"Virhe tiedostoon kirjoittamisessa: {e}") # Virheilmoitus muille tiedostovirheille
+
+
+
 
 
 
 def main():
 
-    filename = "kalenteri.txt"
     
     valikko()
 

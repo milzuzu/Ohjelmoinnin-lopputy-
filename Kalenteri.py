@@ -20,7 +20,7 @@ def valikko():
         print("5. Lopeta ohjelma")
         valinta = int(input("Valitse toiminto (1-5): ")) # Käyttäjä valitsee numeron, joka vastaa toimintoa
         if valinta == 1:
-            vuosi = int(input("Anna vuosi: "))
+            vuosi = int(input("Anna vuosi: ")) # TÄHÄN TRY WITH
             kuukausi = int(input("Anna kuukausi: "))
             tapahtumat = [1, 10, 20] # Paikanpitäjä tapahtumat // Tähän koodi, joka avaa tekstitiedoston, jossa tallennetut tapahtumat
             tarkastelu(vuosi, kuukausi, tapahtumat)
@@ -59,9 +59,8 @@ def tarkastelu(vuosi, kuukausi, tapahtumat):
 
 # Lisää tapahtuman tiedostoon kalenteri.txt
 def tapahtuman_lisäys(vuosi, kuukausi, tapahtumat):
-    filename = "kalenteri.txt"
     try:
-        with open(filename, "a") as file: # Avataan tiedosto muokkaus modessa
+        with open(TIEDOSTO, "a") as file: # Avataan tiedosto muokkaus modessa
             print("Tapahtuman lisäys -- esim. 2025 3 07")
             tietue = input("\nKerro vuosi, kuukausi ja päivä: ")
             file.write(tietue + "\n") # Kirjoitetaan tiedostoon haluttu tietue + rivinvaihto
@@ -77,7 +76,7 @@ def tapahtuman_lisäys(vuosi, kuukausi, tapahtumat):
 def poista_tapahtuma(vuosi, kuukausi, tapahtumat):
 
     try:
-        with open(filename, "a") as file:
+        with open(TIEDOSTO, "a") as file:
             for event in file:
                 if event == tapahtumat:
                     event = ""

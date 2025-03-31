@@ -91,7 +91,7 @@ def poista_tapahtuma(vuosi, kuukausi, tapahtumat):
 
 
 
-
+print('testi')
 
 
 def main():
